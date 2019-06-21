@@ -76,7 +76,7 @@ class Timer extends Component {
   beginTimer() {
     const futureDate = Date.now() + ((this.state.hours * 60 * 60 * 1000) + (this.state.min * 60 * 1000) + (this.state.sec * 1000));
     this.setState({
-      url: `${window.location.host}/?t=${futureDate}`
+      url: `${window.location.origin}/?t=${futureDate}`
     });
   };
   render() {
