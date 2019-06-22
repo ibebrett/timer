@@ -6,7 +6,11 @@ class App extends Component {
   render() {
     const urlParams = new URLSearchParams(window.location.search)
     if (urlParams.has('t')) {
-      return (<Countdown t={parseInt(urlParams.get('t'))} />);
+      let message = 'Enter The Beholder!!!';
+      if (urlParams.has('m')) {
+        message = urlParams.get('m');
+      }
+      return (<Countdown m={message} t={parseInt(urlParams.get('t'))} />);
     } else {
       /// If it doesnt hava T
       return (
@@ -31,7 +35,8 @@ class Countdown extends Component {
   render() {
     if (this.state.currentTime > this.props.t) {
       return (
-        <Alarm />
+        <Alarm message={this.props.m} />
+
       );
     }
     else {
@@ -48,10 +53,12 @@ class Countdown extends Component {
   };
 };
 class Alarm extends Component {
+
   render() {
     return (
-      <h1>Enter the Beholder!!</h1>
-    )
+      <h1>{this.props.message}</h1>
+    );
+
   }
 }
 class Timer extends Component {
@@ -61,10 +68,16 @@ class Timer extends Component {
       hours: 0,
       min: 0,
       sec: 0,
-      url: ''
+      url: '',
+      inputMessage:''
+
     }
   }
-
+  changeHandler(event) {
+    this.setState({
+      inputMessage: event.target.value
+    })
+  }
   makeUpdater(fieldName) {
     return (event) => {
       const update = {};
@@ -74,10 +87,15 @@ class Timer extends Component {
   }
 
   beginTimer() {
-    const futureDate = Date.now() + ((this.state.hours * 60 * 60 * 1000) + (this.state.min * 60 * 1000) + (this.state.sec * 1000));
+
+    const futureDate = Date.now() + ((this.state.hours * 60 * 60 * 1000) + (this.state.min * 60 * 1000) + (this.state.sec * 1000))
     this.setState({
-      url: `${window.location.origin}/?t=${futureDate}`
-    });
+
+      url: `${window.location.origin}/?t=` + futureDate +'&m=' + this.state.inputMessage
+    })
+      ;
+
+
   };
   render() {
     return (
@@ -104,6 +122,13 @@ class Timer extends Component {
         />
         <div>
           <button onClick={() => this.beginTimer()}>Begin</button>
+        </div>
+        <div>
+          <input
+            type='text'
+            placeholder='Message'
+            onChange={(event)=>{this.changeHandler(event)}}
+          />
         </div>
         <div>
           <a href={this.state.url}>{this.state.url}</a>
