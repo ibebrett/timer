@@ -15,10 +15,6 @@ class App extends Component {
       /// If it doesnt hava T
       return (
         <Timer />
-<<<<<<< HEAD
-=======
-      
->>>>>>> added message option for timer alarm component
       )
     }
   }
@@ -39,11 +35,8 @@ class Countdown extends Component {
   render() {
     if (this.state.currentTime > this.props.t) {
       return (
-<<<<<<< HEAD
-        <Alarm />
-=======
         <Alarm message={this.props.m} />
->>>>>>> added message option for timer alarm component
+
       );
     }
     else {
@@ -60,18 +53,12 @@ class Countdown extends Component {
   };
 };
 class Alarm extends Component {
-<<<<<<< HEAD
-  render() {
-    return (
-      <h1>Enter the Beholder!!</h1>
-    )
-=======
 
   render() {
     return (
       <h1>{this.props.message}</h1>
     );
->>>>>>> added message option for timer alarm component
+
   }
 }
 class Timer extends Component {
@@ -81,12 +68,9 @@ class Timer extends Component {
       hours: 0,
       min: 0,
       sec: 0,
-<<<<<<< HEAD
-      url: ''
-=======
       url: '',
       inputMessage:''
->>>>>>> added message option for timer alarm component
+
     }
   }
   changeHandler(event) {
@@ -103,21 +87,15 @@ class Timer extends Component {
   }
 
   beginTimer() {
-<<<<<<< HEAD
-    const futureDate = Date.now() + ((this.state.hours * 60 * 60 * 1000) + (this.state.min * 60 * 1000) + (this.state.sec * 1000));
-    this.setState({
-      url: `${window.location.origin}/?t=${futureDate}`
-    });
-=======
+
     const futureDate = Date.now() + ((this.state.hours * 60 * 60 * 1000) + (this.state.min * 60 * 1000) + (this.state.sec * 1000))
-
     this.setState({
 
-      url: 'http://localhost:3000/?t=' + futureDate +'&m=' + this.state.inputMessage
+      url: `${window.location.origin}/?t=` + futureDate +'&m=' + this.state.inputMessage
     })
       ;
 
->>>>>>> added message option for timer alarm component
+
   };
   render() {
     return (
