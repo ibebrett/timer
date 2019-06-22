@@ -53,7 +53,10 @@ class Countdown extends Component {
   };
 };
 class Alarm extends Component {
-
+  componentDidMount() {
+    const haha = new Audio('haha.wav');
+    haha.play();
+  }
   render() {
     return (
       <h1>{this.props.message}</h1>
