@@ -41,12 +41,12 @@ class Countdown extends Component {
     }
     else {
       return (
-        <div>
+        <div >
           <ReactInterval
             timeout={100}
             callback={() => this.updateTimer()}
             enabled={true}
-          /><h1>{(this.props.t - this.state.currentTime) / 1000}</h1>
+          /><h1 id='countdown'>{(this.props.t - this.state.currentTime) / 1000}</h1>
         </div>
       );
     };
@@ -72,7 +72,7 @@ class Timer extends Component {
       min: 0,
       sec: 0,
       url: '',
-      inputMessage:''
+      inputMessage:'Enter The Beholder!!!'
 
     }
   }
@@ -104,19 +104,21 @@ class Timer extends Component {
     return (
       <div className="App">
         <h1>Time is of the essence</h1>
-        <h4>Set your timer</h4>
+        <h2>Set your timer</h2>
+        <h4>Hours</h4>
         <input
           type='text'
           placeholder='Hours'
           value={this.state.hours}
           onChange={this.makeUpdater('hours')}
-        />
+        /><h4>Minutes</h4>
         <input
           type='text'
           placeholder='Minutes'
           value={this.state.min}
           onChange={this.makeUpdater('min')}
         />
+        <h4>Seconds</h4>
         <input
           type='text'
           placeholder='Seconds'
